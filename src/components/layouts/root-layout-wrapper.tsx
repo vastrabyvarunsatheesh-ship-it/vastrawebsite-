@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Header } from "./header";
 import { FooterShell } from "./footer-shell";
+import { MiniCartDrawer } from "../cart/mini-cart-drawer";
 
 export const RootLayoutWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
@@ -8,6 +9,7 @@ export const RootLayoutWrapper: React.FC<{ children: React.ReactNode }> = ({ chi
       <Header />
       <main className="flex-1">{children}</main>
       <FooterShell />
+      <MiniCartDrawer />
     </div>
   );
 };
