@@ -1,24 +1,37 @@
-import { Address } from "./user";
-
 export type OrderStatus =
   | "PENDING"
-  | "CONFIRMED"
   | "PROCESSING"
+  | "PACKED"
   | "SHIPPED"
   | "DELIVERED"
   | "CANCELLED"
-  | "RETURNED";
+  | "RETURNED"
+  | "REFUNDED"
+  | "FAILED";
 
-export type PaymentStatus = "PENDING" | "PAID" | "FAILED" | "REFUNDED";
+export type PaymentStatus =
+  | "PENDING"
+  | "PAID"
+  | "FAILED"
+  | "REFUNDED"
+  | "PARTIALLY_REFUNDED";
+
+export type PaymentMethod =
+  | "RAZORPAY_CARD"
+  | "RAZORPAY_UPI"
+  | "RAZORPAY_NETBANKING"
+  | "COD";
 
 export interface OrderItem {
   id: string;
+  orderId: string;
   productId: string;
-  variantId: string;
   productTitle: string;
+  productSlug: string;
+  productImage: string;
+  sku: string;
   color: string;
   size?: string;
-  image: string;
   unitPrice: number;
   quantity: number;
   totalPrice: number;
@@ -26,21 +39,20 @@ export interface OrderItem {
 
 export interface Order {
   id: string;
-  orderNumber: string;
   userId: string;
-  items: OrderItem[];
-  shippingAddress: Address;
+  orderNumber: string;
   subtotal: number;
-  taxAmount: number;
-  shippingFee: number;
   discountAmount: number;
+  shippingFee: number;
+  taxAmount: number;
   totalAmount: number;
   orderStatus: OrderStatus;
   paymentStatus: PaymentStatus;
-  paymentMethod: "RAZORPAY_CARD" | "RAZORPAY_UPI" | "RAZORPAY_NETBANKING" | "COD";
-  razorpayOrderId?: string;
-  razorpayPaymentId?: string;
+  paymentMethod: PaymentMethod;
   trackingNumber?: string;
+  carrierName?: string;
+  notes?: string;
   createdAt: string;
   updatedAt: string;
+  orderItems?: OrderItem[];
 }
