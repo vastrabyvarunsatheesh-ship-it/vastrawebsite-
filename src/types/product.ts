@@ -1,36 +1,28 @@
 export type ProductCategory =
   | "sarees"
+  | "tshirts"
   | "kurtis"
   | "dress-materials"
   | "womens-fashion"
-  | "mens-wear"
-  | "jewellery"
-  | "kids-wear"
-  | "accessories";
+  | "all";
 
 export type FabricType =
-  | "Silk"
-  | "Kanjeevaram"
   | "Kanjeevaram Silk"
-  | "Banarasi"
   | "Banarasi Silk"
+  | "Chanderi Silk"
   | "Cotton"
   | "Georgette"
-  | "Chiffon"
   | "Organza"
-  | "Velvet"
-  | "Chanderi"
-  | "Chanderi Silk"
-  | "Chanderi & Organza";
+  | "Chanderi & Organza"
+  | "T-Shirt Cotton";
 
 export interface ProductVariant {
   id: string;
   sku: string;
   color: string;
-  size?: string;
+  size?: string; // S, M, L, XL, XXL, Free Size
   stock: number;
   price: number;
-  discountPrice?: number;
   images: string[];
 }
 

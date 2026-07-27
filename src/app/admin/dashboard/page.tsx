@@ -4,16 +4,17 @@ import * as React from "react";
 import Link from "next/link";
 import { Container } from "@/components/common/container";
 import { formatCurrency } from "@/lib/utils";
-import { DollarSign, ShoppingBag, Users, AlertTriangle, TrendingUp, Package, Tag, Settings } from "lucide-react";
+import { DollarSign, ShoppingBag, Users, AlertTriangle, TrendingUp, Package, Tag, ExternalLink, RefreshCw } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export default function AdminDashboardPage() {
   return (
     <div className="py-12 bg-ivory min-h-screen">
       <Container>
         {/* Executive Header */}
-        <div className="mb-10 border-b border-obsidian/10 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center">
+        <div className="mb-8 border-b border-obsidian/10 pb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center">
           <div>
-            <span className="text-[10px] font-semibold tracking-[0.3em] text-gold-600 uppercase">
+            <span className="text-[10px] font-semibold tracking-[0.3em] text-teal-600 uppercase">
               Vastra Executive Suite
             </span>
             <h1 className="font-serif text-3xl font-bold tracking-wide text-obsidian uppercase mt-1">
@@ -21,25 +22,46 @@ export default function AdminDashboardPage() {
             </h1>
           </div>
           <div className="flex space-x-3 mt-4 sm:mt-0">
-            <Link
-              href="/admin/products"
-              className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider bg-gold-400 text-obsidian hover:bg-gold-500 transition-colors"
+            <a
+              href="https://admin.varunsatheesh.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-xs font-bold uppercase tracking-wider bg-teal-500 text-ivory hover:bg-teal-600 transition-colors flex items-center shadow-luxury"
             >
-              Manage Products
-            </Link>
-            <Link
-              href="/admin/orders"
-              className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider border border-obsidian/20 text-obsidian hover:bg-obsidian/5 transition-colors"
-            >
-              Manage Orders
-            </Link>
+              Open admin.varunsatheesh.in <ExternalLink className="h-4 w-4 ml-1.5" />
+            </a>
           </div>
+        </div>
+
+        {/* External Admin System Integration Banner */}
+        <div className="mb-10 border border-teal-500/30 bg-teal-500/10 p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div>
+            <div className="flex items-center space-x-2 text-teal-700 font-bold text-sm uppercase">
+              <RefreshCw className="h-4 w-4 text-teal-600" />
+              <span>Vastra External Management System (`admin.varunsatheesh.in`) Sync</span>
+            </div>
+            <p className="text-xs text-obsidian/70 mt-1">
+              When you add Sarees or T-Shirts inside <strong>admin.varunsatheesh.in</strong>, products automatically appear live on your Vastra website.
+            </p>
+            <p className="text-[10px] font-mono text-teal-700 mt-1">
+              Webhook Sync Endpoint: <code>https://vastrawebsite.pages.dev/api/products/sync</code>
+            </p>
+          </div>
+          <a
+            href="https://admin.varunsatheesh.in"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button variant="gold" size="sm">
+              Add Products on admin.varunsatheesh.in <ExternalLink className="h-4 w-4 ml-1" />
+            </Button>
+          </a>
         </div>
 
         {/* Executive KPI Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           <div className="border border-obsidian/10 bg-ivory-warm p-6 space-y-2">
-            <div className="flex justify-between items-center text-gold-500">
+            <div className="flex justify-between items-center text-teal-600">
               <span className="text-xs font-bold uppercase tracking-wider text-obsidian/60">Total Revenue</span>
               <DollarSign className="h-5 w-5" />
             </div>
@@ -50,7 +72,7 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="border border-obsidian/10 bg-ivory-warm p-6 space-y-2">
-            <div className="flex justify-between items-center text-gold-500">
+            <div className="flex justify-between items-center text-teal-600">
               <span className="text-xs font-bold uppercase tracking-wider text-obsidian/60">Total Orders</span>
               <ShoppingBag className="h-5 w-5" />
             </div>
@@ -59,7 +81,7 @@ export default function AdminDashboardPage() {
           </div>
 
           <div className="border border-obsidian/10 bg-ivory-warm p-6 space-y-2">
-            <div className="flex justify-between items-center text-gold-500">
+            <div className="flex justify-between items-center text-teal-600">
               <span className="text-xs font-bold uppercase tracking-wider text-obsidian/60">Active Clients</span>
               <Users className="h-5 w-5" />
             </div>
@@ -72,7 +94,7 @@ export default function AdminDashboardPage() {
               <span className="text-xs font-bold uppercase tracking-wider text-red-700">Low Stock Alert</span>
               <AlertTriangle className="h-5 w-5" />
             </div>
-            <h3 className="font-serif text-3xl font-bold text-red-700">2 Items</h3>
+            <h3 className="font-serif text-3xl font-bold text-red-700">0 Items</h3>
             <span className="text-[10px] text-red-600 font-semibold">Stock &lt; 5 units remaining</span>
           </div>
         </div>
@@ -81,23 +103,23 @@ export default function AdminDashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Link
             href="/admin/products"
-            className="border border-obsidian/10 bg-ivory-warm p-6 space-y-3 hover:border-gold-400 transition-all group"
+            className="border border-obsidian/10 bg-ivory-warm p-6 space-y-3 hover:border-teal-500 transition-all group"
           >
-            <Package className="h-8 w-8 text-gold-500" />
-            <h3 className="font-serif text-lg font-bold text-obsidian uppercase group-hover:text-gold-600">
+            <Package className="h-8 w-8 text-teal-600" />
+            <h3 className="font-serif text-lg font-bold text-obsidian uppercase group-hover:text-teal-600">
               Product Catalogue
             </h3>
             <p className="text-xs text-obsidian/60">
-              Add new Kanjeevaram sarees, update prices, manage variants and images.
+              Add Sarees or T-Shirts directly or view products synced from admin.varunsatheesh.in.
             </p>
           </Link>
 
           <Link
             href="/admin/orders"
-            className="border border-obsidian/10 bg-ivory-warm p-6 space-y-3 hover:border-gold-400 transition-all group"
+            className="border border-obsidian/10 bg-ivory-warm p-6 space-y-3 hover:border-teal-500 transition-all group"
           >
-            <ShoppingBag className="h-8 w-8 text-gold-500" />
-            <h3 className="font-serif text-lg font-bold text-obsidian uppercase group-hover:text-gold-600">
+            <ShoppingBag className="h-8 w-8 text-teal-600" />
+            <h3 className="font-serif text-lg font-bold text-obsidian uppercase group-hover:text-teal-600">
               Order Fulfillment
             </h3>
             <p className="text-xs text-obsidian/60">
@@ -107,10 +129,10 @@ export default function AdminDashboardPage() {
 
           <Link
             href="/admin/coupons"
-            className="border border-obsidian/10 bg-ivory-warm p-6 space-y-3 hover:border-gold-400 transition-all group"
+            className="border border-obsidian/10 bg-ivory-warm p-6 space-y-3 hover:border-teal-500 transition-all group"
           >
-            <Tag className="h-8 w-8 text-gold-500" />
-            <h3 className="font-serif text-lg font-bold text-obsidian uppercase group-hover:text-gold-600">
+            <Tag className="h-8 w-8 text-teal-600" />
+            <h3 className="font-serif text-lg font-bold text-obsidian uppercase group-hover:text-teal-600">
               Promotional Coupons
             </h3>
             <p className="text-xs text-obsidian/60">

@@ -1,78 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@layer base {
-  :root {
-    --background: 40 40% 98%;
-    --foreground: 240 10% 6%;
-    --card: 40 40% 98%;
-    --card-foreground: 240 10% 6%;
-    --popover: 40 40% 98%;
-    --popover-foreground: 240 10% 6%;
-    --primary: 44 65% 52%;
-    --primary-foreground: 240 10% 6%;
-    --secondary: 40 20% 94%;
-    --secondary-foreground: 240 10% 6%;
-    --muted: 40 20% 94%;
-    --muted-foreground: 240 5% 45%;
-    --accent: 44 65% 52%;
-    --accent-foreground: 240 10% 6%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 44 65% 52%;
-    --radius: 0.25rem;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-ivory text-obsidian font-sans antialiased;
-  }
-
-  /* Luxury Headings */
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-wide;
-  }
+:root {
+  --primary: #00aa8a;
+  --primary-dark: #008b74;
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
-@layer utilities {
-  /* Luxury Gold Gradient Backgrounds */
-  .bg-gold-gradient {
-    background: linear-gradient(135deg, #D4AF37 0%, #AA8A25 50%, #F4E8C1 100%);
-  }
-
-  /* Metallic Text Effect */
-  .text-gold-metallic {
-    background: linear-gradient(135deg, #D4AF37 0%, #F4E8C1 50%, #AA8A25 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Subtle Glassmorphic Container */
-  .glass-panel {
-    background: rgba(255, 253, 249, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
 }
 
-/* Custom Luxury Scrollbar */
+/* Custom scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF8F5;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D4AF37;
+  background: #00aa8a;
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #AA8A25;
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

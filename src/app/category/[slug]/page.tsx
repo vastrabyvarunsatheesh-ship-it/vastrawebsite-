@@ -3,6 +3,7 @@ import { CategoryView } from "@/components/catalog/category-view";
 export function generateStaticParams() {
   return [
     { slug: "sarees" },
+    { slug: "tshirts" },
     { slug: "kurtis" },
     { slug: "dress-materials" },
     { slug: "womens-fashion" },
