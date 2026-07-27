@@ -1,5 +1,7 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { ApiResponse } from "@/types/api";
+
+export const dynamic = "force-static";
 
 const MOCK_PRODUCTS = [
   {
@@ -7,7 +9,7 @@ const MOCK_PRODUCTS = [
     slug: "royal-crimson-kanjeevaram-pure-silk-saree",
     title: "Royal Crimson Kanjeevaram Pure Silk Saree",
     subtitle: "Artisanal Zari Woven Border",
-    description: "Handcrafted pure mulberry silk saree featuring intricate pure zari brocade weave inspired by South Indian temple architecture.",
+    description: "Handcrafted pure mulberry silk saree featuring intricate pure zari brocade weave.",
     category: "sarees",
     fabric: "Kanjeevaram Silk",
     craftDetails: "Pure Zari Weave",
@@ -29,7 +31,7 @@ const MOCK_PRODUCTS = [
         ],
       },
     ],
-    tags: ["Saree", "Kanjeevaram", "Silk", "Bridal"],
+    tags: ["Saree", "Kanjeevaram"],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -56,11 +58,10 @@ const MOCK_PRODUCTS = [
         price: 24499,
         images: [
           "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?q=80&w=800",
-          "https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=800",
         ],
       },
     ],
-    tags: ["Saree", "Banarasi", "Silk", "Festive"],
+    tags: ["Saree", "Banarasi"],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -72,7 +73,7 @@ const MOCK_PRODUCTS = [
     description: "Floor-length chanderi silk Anarkali featuring hand-embroidered Gota Patti work.",
     category: "kurtis",
     fabric: "Chanderi Silk",
-    craftDetails: "Gota Patti & Zardozi",
+    craftDetails: "Gota Patti",
     basePrice: 14999,
     compareAtPrice: 18999,
     isFeatured: true,
@@ -91,7 +92,7 @@ const MOCK_PRODUCTS = [
         ],
       },
     ],
-    tags: ["Kurti", "Anarkali", "Chanderi"],
+    tags: ["Kurti", "Anarkali"],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
@@ -103,7 +104,7 @@ const MOCK_PRODUCTS = [
     description: "Unstitched kurta, bottom, and organza handblock printed dupatta.",
     category: "dress-materials",
     fabric: "Chanderi & Organza",
-    craftDetails: "Bagru Handblock Print",
+    craftDetails: "Handblock Print",
     basePrice: 6499,
     compareAtPrice: 8999,
     isFeatured: true,
@@ -121,26 +122,18 @@ const MOCK_PRODUCTS = [
         ],
       },
     ],
-    tags: ["Dress Material", "Unstitched", "Chanderi"],
+    tags: ["Dress Material"],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
 ];
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const category = searchParams.get("category");
-
-  let filtered = MOCK_PRODUCTS;
-  if (category) {
-    filtered = MOCK_PRODUCTS.filter((p) => p.category === category);
-  }
-
-  const response: ApiResponse<typeof filtered> = {
+export async function GET() {
+  const response: ApiResponse<typeof MOCK_PRODUCTS> = {
     success: true,
-    data: filtered,
+    data: MOCK_PRODUCTS,
     meta: {
-      total: filtered.length,
+      total: MOCK_PRODUCTS.length,
       page: 1,
       limit: 10,
     },

@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { siteConfig } from "@/config/site";
 import { ApiResponse } from "@/types/api";
 
+export const dynamic = "force-static";
+
 export async function GET() {
   const response: ApiResponse<typeof siteConfig.navCategories> = {
     success: true,
